@@ -8,11 +8,11 @@ def checkString():
     
     string = request.args.get('string')
     print(string)
-    string = request.args.get('responseType')
-    print(string)
+    responseType = request.args.get('responseType')
+    print(responseType)
 
     
     
     return "OK 200"
 
-app.run()
+app.run(host="localhost", port=8000, debug=True)
