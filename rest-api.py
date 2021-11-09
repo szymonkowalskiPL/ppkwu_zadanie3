@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import re
+import requests
 
 app = Flask(__name__)
 
@@ -7,7 +8,9 @@ app = Flask(__name__)
 def checkString():
     string = request.args.get('string')
     responsType = request.args.get('responseType')
-    requests.get('http://127.0.0.1:5000/checkstring?string='+string).content
+    link = 'http://127.0.0.1:5000/checkstring?string='+string
+    print(link)
+    requests.post(link).content
     
     return "OK 200"
 
