@@ -15,15 +15,20 @@ def checkString():
     result = requests.post(link)
     data = result.json()
 
+    ext=""
     if responseType==1:
          print("txt reponse")
+         ext="txt"
     elif responseType==2:
         print("json reponse")
+        ext="json"
     elif responseType==3:
         print("xml response")
+        ext="xml"
     elif responseType==4:
         print("csv response")
+        ext="csv"
 
-    return data
+    return open("response."+ext)
 
 app.run(host="localhost", port=8000, debug=False)
