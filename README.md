@@ -2,7 +2,8 @@ String API 3
 Api to count chars in srting using external API and save result in one of three types of fies (json, csv, xml or response as simple text).
 
 required packages:
-1.Flask (pip install flask)
+1. Flask (pip install flask)
+2. requests (pip install requests)
 
 Endpoints:
 
