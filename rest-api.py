@@ -16,7 +16,7 @@ def checkString():
     data = result.json()
     print(data)
 
-    returnData=data
+    returnData=""
     
     if responseType=="txt":
          print("txt reponse")
@@ -33,7 +33,14 @@ def checkString():
         returnData += "\t<param class=\"special_chars\">" + str(data["special_characters"]) + "</param>"
         returnData += "</string-result>"
     elif responseType=="csv":
-        print("csv response")
+        returnData += str(data["upper_case"])
+        returnData += ";"
+        returnData += str(data["lower_case"])
+        returnData += ";"
+        returnData += str(data["numbers"])
+        returnData += ";"
+        returnData += str(data["special_characters"])
+
 
     return returnData
 
