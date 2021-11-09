@@ -8,24 +8,24 @@ app = Flask(__name__)
 def checkString():
     string = request.args.get('string')
     responseType = request.args.get('responseType')
-    print(string, responseType)
+    #print(string, responseType)
     
-    print("send req to API 2")
+    #print("send req to API 2")
     link = 'http://127.0.0.1:5000/checkstring?string='+string
     result = requests.post(link)
     data = result.json()
-    print(data)
+    #print(data)
 
     returnData=""
     
     if responseType=="txt":
-         print("txt reponse")
+         #print("txt reponse")
          returnData="Lowercase: "+str(data["lower_case"])+"\n"+"Uppercase: "+str(data["upper_case"])+"\n"+"Numbers: "+str(data["numbers"])+"\n"+"Special: "+str(data["special_characters"])
     elif responseType=="json":
-        print("json reponse")
+        #print("json reponse")
         returnData=data
     elif responseType=="xml":
-        print("xml response")
+        #print("xml response")
         returnData = "<string-result id=\"" + string + "\">"
         returnData += "\t<param class=\"upper_case\">" + str(data["upper_case"]) + "</param>"
         returnData += "\t<param class=\"lower_case\">" + str(data["lower_case"]) + "</param>"
