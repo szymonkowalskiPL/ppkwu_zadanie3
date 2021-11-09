@@ -14,21 +14,22 @@ def checkString():
     link = 'http://127.0.0.1:5000/checkstring?string='+string
     result = requests.post(link)
     data = result.json()
+    print(data)
 
-    ext=""
+    returnData=data
+    
     if responseType==1:
          print("txt reponse")
-         ext="txt"
+         returnData="Lowercase: "+str(data["lower_case"])+"\n"+"Uppercase: "+str(data["upper_case"])+"\n"
+         
     elif responseType==2:
         print("json reponse")
-        ext="json"
+        returnData=data
     elif responseType==3:
         print("xml response")
-        ext="xml"
     elif responseType==4:
         print("csv response")
-        ext="csv"
 
-    return open("response."+ext)
+    return returnData
 
 app.run(host="localhost", port=8000, debug=False)
