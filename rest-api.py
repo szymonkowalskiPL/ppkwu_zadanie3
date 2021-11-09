@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/checkstring',  methods=['GET', 'POST'])
 def checkString():
     string = request.args.get('string')
-    responseType = int(request.args.get('responseType'))
+    responseType = request.args.get('responseType')
     print(string, responseType)
     
     print("send req to API 2")
@@ -18,16 +18,21 @@ def checkString():
 
     returnData=data
     
-    if responseType==1:
+    if responseType=="txt":
          print("txt reponse")
-         returnData="Lowercase: "+str(data["lower_case"])+"\n"+"Uppercase: "+str(data["upper_case"])+"\n"
-         
-    elif responseType==2:
+         returnData="Lowercase: "+str(data["lower_case"])+"\n"+"Uppercase: "+str(data["upper_case"])+"\n"+"Numbers: "+str(data["numbers"])+"\n"+"Special: "+str(data["special_characters"])
+    elif responseType=="json":
         print("json reponse")
         returnData=data
-    elif responseType==3:
+    elif responseType=="xml":
         print("xml response")
-    elif responseType==4:
+        returnData = "<string-result id=\"" + string + "\">"
+        returnData += "\t<param class=\"upper_case\">" + str(data["upper_case"]) + "</param>"
+        returnData += "\t<param class=\"lower_case\">" + str(data["lower_case"]) + "</param>"
+        returnData += "\t<param class=\"numbers\">" + str(data["numbers"]) + "</param>"
+        returnData += "\t<param class=\"special_chars\">" + str(data["special_characters"]) + "</param>"
+        returnData += "</string-result>"
+    elif responseType=="csv":
         print("csv response")
 
     return returnData
